@@ -36,16 +36,14 @@ namespace zag_pos
             this.liczba_dostawcow = new System.Windows.Forms.TextBox();
             this.ok = new System.Windows.Forms.Button();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
+            this.macierz_zyskow_jedn = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
-            this.alpha_0 = new System.Windows.Forms.Label();
-            this.alpha_1 = new System.Windows.Forms.Label();
-            this.alpha_2 = new System.Windows.Forms.Label();
-            this.a0 = new System.Windows.Forms.Label();
-            this.a1 = new System.Windows.Forms.Label();
-            this.a2 = new System.Windows.Forms.Label();
+            this.beta1 = new System.Windows.Forms.Label();
             this.zatwierdz = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.alpha1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -61,7 +59,7 @@ namespace zag_pos
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1095, 313);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(775, 313);
             this.tableLayoutPanel1.TabIndex = 5;
             this.tableLayoutPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel1_Paint);
             // 
@@ -128,38 +126,38 @@ namespace zag_pos
             this.tableLayoutPanel2.ColumnCount = 2;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(22, 781);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(22, 844);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 2;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(533, 194);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(379, 194);
             this.tableLayoutPanel2.TabIndex = 13;
             // 
-            // tableLayoutPanel3
+            // macierz_zyskow_jedn
             // 
-            this.tableLayoutPanel3.ColumnCount = 2;
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(22, 569);
-            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
-            this.tableLayoutPanel3.RowCount = 2;
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(533, 194);
-            this.tableLayoutPanel3.TabIndex = 11;
+            this.macierz_zyskow_jedn.ColumnCount = 2;
+            this.macierz_zyskow_jedn.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.macierz_zyskow_jedn.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.macierz_zyskow_jedn.Location = new System.Drawing.Point(22, 644);
+            this.macierz_zyskow_jedn.Name = "macierz_zyskow_jedn";
+            this.macierz_zyskow_jedn.RowCount = 2;
+            this.macierz_zyskow_jedn.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.macierz_zyskow_jedn.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.macierz_zyskow_jedn.Size = new System.Drawing.Size(379, 194);
+            this.macierz_zyskow_jedn.TabIndex = 11;
             // 
             // tableLayoutPanel4
             // 
             this.tableLayoutPanel4.ColumnCount = 2;
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel4.Location = new System.Drawing.Point(584, 569);
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(419, 644);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 2;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(533, 194);
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(378, 194);
             this.tableLayoutPanel4.TabIndex = 12;
             // 
             // tableLayoutPanel5
@@ -167,107 +165,82 @@ namespace zag_pos
             this.tableLayoutPanel5.ColumnCount = 2;
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel5.Location = new System.Drawing.Point(581, 781);
+            this.tableLayoutPanel5.Location = new System.Drawing.Point(419, 844);
             this.tableLayoutPanel5.Name = "tableLayoutPanel5";
             this.tableLayoutPanel5.RowCount = 2;
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(536, 194);
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(378, 194);
             this.tableLayoutPanel5.TabIndex = 14;
             // 
-            // alpha_0
+            // beta1
             // 
-            this.alpha_0.AutoSize = true;
-            this.alpha_0.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.alpha_0.Location = new System.Drawing.Point(22, 1005);
-            this.alpha_0.Name = "alpha_0";
-            this.alpha_0.Size = new System.Drawing.Size(73, 20);
-            this.alpha_0.TabIndex = 15;
-            this.alpha_0.Text = "alpha 0 =";
-            this.alpha_0.Visible = false;
-            // 
-            // alpha_1
-            // 
-            this.alpha_1.AutoSize = true;
-            this.alpha_1.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.alpha_1.Location = new System.Drawing.Point(22, 1037);
-            this.alpha_1.Name = "alpha_1";
-            this.alpha_1.Size = new System.Drawing.Size(71, 20);
-            this.alpha_1.TabIndex = 16;
-            this.alpha_1.Text = "alpha 1 =";
-            this.alpha_1.Visible = false;
-            // 
-            // alpha_2
-            // 
-            this.alpha_2.AutoSize = true;
-            this.alpha_2.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.alpha_2.Location = new System.Drawing.Point(22, 1069);
-            this.alpha_2.Name = "alpha_2";
-            this.alpha_2.Size = new System.Drawing.Size(73, 20);
-            this.alpha_2.TabIndex = 17;
-            this.alpha_2.Text = "alpha 2 =";
-            this.alpha_2.Visible = false;
-            // 
-            // a0
-            // 
-            this.a0.AutoSize = true;
-            this.a0.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.a0.Location = new System.Drawing.Point(92, 1005);
-            this.a0.Name = "a0";
-            this.a0.Size = new System.Drawing.Size(17, 20);
-            this.a0.TabIndex = 18;
-            this.a0.Text = "0";
-            this.a0.Visible = false;
-            // 
-            // a1
-            // 
-            this.a1.AutoSize = true;
-            this.a1.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.a1.Location = new System.Drawing.Point(92, 1037);
-            this.a1.Name = "a1";
-            this.a1.Size = new System.Drawing.Size(17, 20);
-            this.a1.TabIndex = 19;
-            this.a1.Text = "0";
-            this.a1.Visible = false;
-            // 
-            // a2
-            // 
-            this.a2.AutoSize = true;
-            this.a2.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.a2.Location = new System.Drawing.Point(92, 1069);
-            this.a2.Name = "a2";
-            this.a2.Size = new System.Drawing.Size(17, 20);
-            this.a2.TabIndex = 20;
-            this.a2.Text = "0";
-            this.a2.Visible = false;
+            this.beta1.AutoSize = true;
+            this.beta1.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.beta1.Location = new System.Drawing.Point(301, 554);
+            this.beta1.Name = "beta1";
+            this.beta1.Size = new System.Drawing.Size(53, 20);
+            this.beta1.TabIndex = 16;
+            this.beta1.Text = "beta =";
+            this.beta1.Visible = false;
+            this.beta1.Click += new System.EventHandler(this.beta1_Click);
             // 
             // zatwierdz
             // 
             this.zatwierdz.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.zatwierdz.Location = new System.Drawing.Point(22, 171);
+            this.zatwierdz.Location = new System.Drawing.Point(22, 183);
             this.zatwierdz.Name = "zatwierdz";
-            this.zatwierdz.Size = new System.Drawing.Size(131, 44);
+            this.zatwierdz.Size = new System.Drawing.Size(131, 32);
             this.zatwierdz.TabIndex = 21;
             this.zatwierdz.Text = "ZATWIERDŹ DANE";
             this.zatwierdz.UseVisualStyleBackColor = true;
             this.zatwierdz.Visible = false;
             this.zatwierdz.Click += new System.EventHandler(this.zatwierdz_Click);
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(273, 30);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(38, 15);
+            this.label2.TabIndex = 22;
+            this.label2.Text = "label2";
+            this.label2.Click += new System.EventHandler(this.label2_Click);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(273, 63);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(38, 15);
+            this.label4.TabIndex = 23;
+            this.label4.Text = "label4";
+            this.label4.Click += new System.EventHandler(this.label4_Click);
+            // 
+            // alpha1
+            // 
+            this.alpha1.AutoSize = true;
+            this.alpha1.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.alpha1.Location = new System.Drawing.Point(22, 554);
+            this.alpha1.Name = "alpha1";
+            this.alpha1.Size = new System.Drawing.Size(61, 20);
+            this.alpha1.TabIndex = 15;
+            this.alpha1.Text = "alpha =";
+            this.alpha1.Click += new System.EventHandler(this.alpha_0_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1189, 1121);
+            this.ClientSize = new System.Drawing.Size(830, 876);
+            this.Controls.Add(this.beta1);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.zatwierdz);
-            this.Controls.Add(this.a2);
-            this.Controls.Add(this.a1);
-            this.Controls.Add(this.a0);
-            this.Controls.Add(this.alpha_2);
-            this.Controls.Add(this.alpha_1);
-            this.Controls.Add(this.alpha_0);
+            this.Controls.Add(this.alpha1);
             this.Controls.Add(this.tableLayoutPanel5);
             this.Controls.Add(this.tableLayoutPanel4);
-            this.Controls.Add(this.tableLayoutPanel3);
+            this.Controls.Add(this.macierz_zyskow_jedn);
             this.Controls.Add(this.tableLayoutPanel2);
             this.Controls.Add(this.ok);
             this.Controls.Add(this.liczba_dostawcow);
@@ -294,16 +267,15 @@ namespace zag_pos
         private System.Windows.Forms.TextBox liczba_dostawcow;
         private System.Windows.Forms.Button ok;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
+        private System.Windows.Forms.TableLayoutPanel macierz_zyskow_jedn;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
-        private System.Windows.Forms.Label alpha_0;
         private System.Windows.Forms.Label alpha_1;
-        private System.Windows.Forms.Label alpha_2;
-        private System.Windows.Forms.Label a0;
-        private System.Windows.Forms.Label a1;
-        private System.Windows.Forms.Label a2;
         private System.Windows.Forms.Button zatwierdz;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label beta1;
+        private System.Windows.Forms.Label alpha1;
     }
 }
 
