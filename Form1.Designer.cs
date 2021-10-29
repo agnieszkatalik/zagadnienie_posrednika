@@ -42,24 +42,26 @@ namespace zag_pos
             this.beta1 = new System.Windows.Forms.Label();
             this.zatwierdz = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
             this.alpha1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
             // 
+            this.tableLayoutPanel1.AutoScroll = true;
+            this.tableLayoutPanel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.tableLayoutPanel1.ColumnCount = 2;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.AddColumns;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(22, 238);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(775, 313);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(612, 224);
             this.tableLayoutPanel1.TabIndex = 5;
             this.tableLayoutPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel1_Paint);
             // 
@@ -177,7 +179,7 @@ namespace zag_pos
             // 
             this.beta1.AutoSize = true;
             this.beta1.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.beta1.Location = new System.Drawing.Point(301, 554);
+            this.beta1.Location = new System.Drawing.Point(22, 524);
             this.beta1.Name = "beta1";
             this.beta1.Size = new System.Drawing.Size(53, 20);
             this.beta1.TabIndex = 16;
@@ -207,34 +209,24 @@ namespace zag_pos
             this.label2.Text = "label2";
             this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(273, 63);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(38, 15);
-            this.label4.TabIndex = 23;
-            this.label4.Text = "label4";
-            this.label4.Click += new System.EventHandler(this.label4_Click);
-            // 
             // alpha1
             // 
             this.alpha1.AutoSize = true;
             this.alpha1.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.alpha1.Location = new System.Drawing.Point(22, 554);
+            this.alpha1.Location = new System.Drawing.Point(22, 488);
             this.alpha1.Name = "alpha1";
             this.alpha1.Size = new System.Drawing.Size(61, 20);
             this.alpha1.TabIndex = 15;
             this.alpha1.Text = "alpha =";
+            this.alpha1.Visible = false;
             this.alpha1.Click += new System.EventHandler(this.alpha_0_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(830, 876);
+            this.ClientSize = new System.Drawing.Size(270, 147);
             this.Controls.Add(this.beta1);
-            this.Controls.Add(this.label4);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.zatwierdz);
             this.Controls.Add(this.alpha1);
@@ -273,7 +265,6 @@ namespace zag_pos
         private System.Windows.Forms.Label alpha_1;
         private System.Windows.Forms.Button zatwierdz;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label beta1;
         private System.Windows.Forms.Label alpha1;
     }

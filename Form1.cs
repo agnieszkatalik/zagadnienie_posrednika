@@ -50,7 +50,12 @@ namespace zag_pos
 
                 GenerateTable(columnCount, rowCount);
                 zatwierdz.Visible = true;
+
+                Size = new Size(tableLayoutPanel1.Width,615);
+                CenterToScreen();
+
             }
+
 
             else
 
@@ -255,12 +260,10 @@ namespace zag_pos
 
         private void label2_Click(object sender, EventArgs e)
         {
-            label2.Text = n.ToString();
         }
 
         private void label4_Click(object sender, EventArgs e)
         {
-            label4.Text = m.ToString();
         }
 
         private void alpha_0_Click(object sender, EventArgs e)
