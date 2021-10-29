@@ -145,7 +145,6 @@ namespace zag_pos
 
             }
 
-            dataCounter--;
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -168,6 +167,7 @@ namespace zag_pos
             cal.calculate();
             cal.zyskCalkowity();
             cal.funkcja();
+            cal.alphaBeta();
             alp(Calculations.alpha);
             bet(Calculations.beta);
 

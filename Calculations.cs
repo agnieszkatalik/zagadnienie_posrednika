@@ -26,8 +26,8 @@ namespace zag_pos
 
         public static int[] alpha;
         public static int[] beta;
-        int[] alpha1;
-        int[] beta1;
+        public int[] alpha1;
+        public int[] beta1;
 
         private int[][] tablicaLiczb;// tablica pomocnicza
 
@@ -39,7 +39,7 @@ namespace zag_pos
             popyt = new int[n + 1];
             kZ = new int[m];
             c = new int[n];
-            kT = new int[n][]; // kT koszt transportu
+            kT = new int[m][];/////tu
             zC = new int[m + 1][];
 
             alpha = new int[m + 1];
@@ -51,8 +51,7 @@ namespace zag_pos
 
         public void calculate()
         {
-            int ttt = Form1.dataCounter;
-            int tmp=(Form1.dataCounter)-m;
+            int tmp=(Form1.dataCounter)-m;  // działa
             for (int i = 0; i < m; i++)
             {
                 podaz[i] = Form1.dataArr[i];
@@ -63,7 +62,7 @@ namespace zag_pos
             }
 
             tmp = m;
-            for (int i = 0; i < n; i++)
+            for (int i = 0; i < n; i++) // działa
             {
                 popyt[i] = Form1.dataArr[tmp];
                 suma_popyt += popyt[i];
@@ -72,17 +71,18 @@ namespace zag_pos
                 tmp = tmp + m + 2;
             }
 
-            tmp = m;
+            tmp = m+1;
             for (int i = 0; i < m; i++) // koszty transportu dla poszczególnych tras
             {
-                kT[i] = new int[n];
+                kT[i] = new int[n]; // działa
                 for (int j = 0; j < n; j++)
                 {
-                    kT[i][j] = Form1.dataArr[tmp + 1];
-                    tmp += m + 1;
+                   kT[i][j] = Form1.dataArr[tmp];
+                    int ttttt = Form1.dataArr[tmp];
+                    tmp += m + 2;
                 }
 
-                tmp = i;
+                tmp = m+i+2;
             }
 
         }
@@ -106,7 +106,6 @@ namespace zag_pos
 
         public void funkcja()
         {
-            System.Console.WriteLine(m);
             if (suma_popyt == suma_podaz)
             {
                 zC = new int[m][]; // zC zysk calkowity = cena sprzedazy - koszt zakupu - koszt transportu
@@ -150,13 +149,14 @@ namespace zag_pos
                 int[] podaz1 = new int[m + 1];
                 int[] popyt1 = new int[n + 1];
 
-                podaz1 = podaz;
-                popyt1 = popyt;
-
                 for (int i = 0; i < n + 1; i++)
                 {
-                    podaz1[i] = podaz[i];
                     popyt1[i] = popyt[i];
+                }
+
+                for (int i = 0; i < m + 1; i++)
+                {
+                    podaz1[i] = podaz[i];
                 }
 
                 tablicaLiczb = new int[m + 1][]; // tablica pomocnicza
@@ -278,7 +278,7 @@ namespace zag_pos
                     popyt1[n] = 0;
                 }
 
-                alphaBeta();
+                
 
             }
 
@@ -304,15 +304,26 @@ namespace zag_pos
                 alpha[m] = 0;
                 alpha1[m] = 1;
 
-                // obliczanie alpha i beta
+            // obliczanie alpha i beta
 
-                while (y > 0 || x > 0)
+            while (y > 0 || x > 0)
+            {
+                for (int i = m; i != -1; i--)
                 {
-                    for (int i = m; i != -1; i--)
+                    for (int j = n; j != -1; j--)
                     {
-                        for (int j = n; j != -1; j--)
+                        if (i == m && tablicaLiczb[i][j] > 0)
                         {
-                            if (i == m && tablicaLiczb[i][j] > 0)
+                            if (beta1[j] != 1)
+                            {
+                                beta[j] = zC[i][j] - alpha[i];
+                                beta1[j] = 1;
+                                y--;
+                            }
+                        }
+                        else
+                        {
+                            if (alpha1[i] == 1 && tablicaLiczb[i][j] > 0)
                             {
                                 if (beta1[j] != 1)
                                 {
@@ -321,36 +332,22 @@ namespace zag_pos
                                     y--;
                                 }
                             }
-                            else
+                            if (beta1[j] == 1 && tablicaLiczb[i][j] > 0)
                             {
-                                if (alpha1[i] == 1 && tablicaLiczb[i][j] > 0)
+                                if (alpha1[i] != 1)
                                 {
-                                    if (beta1[j] != 1)
-                                    {
-                                        beta[j] = zC[i][j] - alpha[i];
-                                        beta1[j] = 1;
-                                        y--;
-                                    }
-                                }
-
-                                if (beta1[j] == 1 && tablicaLiczb[i][j] > 0)
-                                {
-                                    if (alpha1[i] != 1)
-                                    {
-                                        alpha[i] = zC[i][j] - beta[j];
-                                        alpha1[i] = 1;
-                                        x--;
-                                    }
+                                    alpha[i] = zC[i][j] - beta[j];
+                                    alpha1[i] = 1;
+                                    x--;
                                 }
                             }
                         }
                     }
                 }
+            }
 
-                for (int i = 0; i < alpha.Length; i++)
-                    System.Console.WriteLine(alpha[i]);
-               // form.alp(alpha);
-               // form.bet(beta);
+            // form.alp(alpha);
+            // form.bet(beta);
         }
     }
 
