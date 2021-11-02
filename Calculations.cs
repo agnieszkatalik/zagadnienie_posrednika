@@ -10,7 +10,7 @@ namespace zag_pos
 {
     class Calculations
     {
-        public Form1 form = new Form1();
+        public Zagadnienie_posrednika form = new Zagadnienie_posrednika();
         public int m; // m dostawcy
         public int n; // n odbiorcy
 
@@ -19,7 +19,10 @@ namespace zag_pos
         public int[] kZ; // kZ koszt zakupu
         public int[] c; // c cena sprzedazy
         public int[][] kT; // kT koszt transportu
-        public int[][] zC; // zC zysk calkowity = cena sprzedazy - koszt zakupu - koszt transportu
+        public static int[][] zC; // zC zysk calkowity = cena sprzedazy - koszt zakupu - koszt transportu
+        public int[][] zK;
+        public static int kC;
+        public static int pC;
 
         public int suma_podaz = 0;
         public int suma_popyt = 0;
@@ -29,7 +32,7 @@ namespace zag_pos
         public int[] alpha1;
         public int[] beta1;
 
-        private int[][] tablicaLiczb;// tablica pomocnicza
+        private int[][] tablicaLiczb;// tablica pomocnicza  // tam gdzie <=0 nie było trasy i dla tych liczymy kryterialne
 
         public void calculator(int n, int m)
         {
@@ -39,8 +42,9 @@ namespace zag_pos
             popyt = new int[n + 1];
             kZ = new int[m];
             c = new int[n];
-            kT = new int[m][];/////tu
+            kT = new int[m][];
             zC = new int[m + 1][];
+            zK = new int[m + 1][];
 
             alpha = new int[m + 1];
             beta = new int[n + 1];
@@ -51,22 +55,22 @@ namespace zag_pos
 
         public void calculate()
         {
-            int tmp=(Form1.dataCounter)-m;  // działa
+            int tmp=(Zagadnienie_posrednika.dataCounter)-m;  // działa
             for (int i = 0; i < m; i++)
             {
-                podaz[i] = Form1.dataArr[i];
+                podaz[i] = Zagadnienie_posrednika.dataArr[i];
                 suma_podaz += podaz[i];
 
-                kZ[i] = Form1.dataArr[tmp];
+                kZ[i] = Zagadnienie_posrednika.dataArr[tmp];
                 tmp++;
             }
 
             tmp = m;
             for (int i = 0; i < n; i++) // działa
             {
-                popyt[i] = Form1.dataArr[tmp];
+                popyt[i] = Zagadnienie_posrednika.dataArr[tmp];
                 suma_popyt += popyt[i];
-                c[i] = Form1.dataArr[tmp + m + 1];
+                c[i] = Zagadnienie_posrednika.dataArr[tmp + m + 1];
 
                 tmp = tmp + m + 2;
             }
@@ -77,8 +81,8 @@ namespace zag_pos
                 kT[i] = new int[n]; // działa
                 for (int j = 0; j < n; j++)
                 {
-                   kT[i][j] = Form1.dataArr[tmp];
-                    int ttttt = Form1.dataArr[tmp];
+                   kT[i][j] = Zagadnienie_posrednika.dataArr[tmp];
+                    int ttttt = Zagadnienie_posrednika.dataArr[tmp];
                     tmp += m + 2;
                 }
 
@@ -91,11 +95,11 @@ namespace zag_pos
         {
             if (suma_popyt == suma_podaz)
             {
-                zC = new int[m][]; // zC zysk calkowity = cena sprzedazy - koszt zakupu - koszt transportu
+                zC = new int[m+1][]; // zC zysk calkowity = cena sprzedazy - koszt zakupu - koszt transportu
 
                 for (int i = 0; i < m; i++)
                 {
-                    zC[i] = new int[n];
+                    zC[i] = new int[n+1];
                     for (int j = 0; j < n; j++)
                     {
                         zC[i][j] = c[j] - (kZ[i] + kT[i][j]);
@@ -348,6 +352,38 @@ namespace zag_pos
 
             // form.alp(alpha);
             // form.bet(beta);
+        }
+
+        public void zmienneKryterialne()
+        {
+            for (int i = 0; i < m + 1; i++)
+            {
+                zK[i] = new int[n + 1];
+
+                for (int j = 0; j < n + 1; j++)
+                {
+                    zK[i][j] = zC[i][j] - alpha[i] - beta[j];
+                }
+            }
+
+        }
+
+        public void kosztIprzychodCalkowity()
+        {
+            for (int i = 0; i < kZ.Length; i++)
+                kC += kZ[i];
+            for (int i=0; i<m; i++)
+            {
+                for(int j=0; j<n; j++)
+                    kC += kT[i][j];
+            }
+
+            pC += kC;
+            for (int i = 0; i < m; i++)
+            {
+                for (int j = 0; j < n; j++)
+                    pC += zC[i][j];
+            }
         }
     }
 

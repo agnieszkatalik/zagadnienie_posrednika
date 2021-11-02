@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace zag_pos
 {
-    public partial class Form1 : Form
+    public partial class Zagadnienie_posrednika : Form
     {
         public static int rowCount;
         public static int columnCount;
@@ -19,9 +19,10 @@ namespace zag_pos
         public static int n;
         public static int dataCounter = 0;
         public TextBox[] txtbox = new TextBox[500];
+        public Label[] ll = new Label[500];
         public static int[] dataArr;
 
-        public Form1()
+        public Zagadnienie_posrednika()
         {
             InitializeComponent();
         }
@@ -40,7 +41,7 @@ namespace zag_pos
         private void ok_Click(object sender, EventArgs e)
         {
 
-            if (Char.IsNumber(liczba_odbiorcow.Text, 0) && Char.IsNumber(liczba_dostawcow.Text, 0))
+            if (!(String.IsNullOrEmpty(liczba_dostawcow.Text)) && !(String.IsNullOrEmpty(liczba_odbiorcow.Text)) && (liczba_dostawcow!= null) && (liczba_odbiorcow!= null) && (Char.IsNumber(liczba_odbiorcow.Text, 0)) && (Char.IsNumber(liczba_dostawcow.Text, 0)))
             {
                 dataCounter = 0;
                 m = Int32.Parse(liczba_dostawcow.Text);
@@ -51,13 +52,13 @@ namespace zag_pos
                 GenerateTable(columnCount, rowCount);
                 zatwierdz.Visible = true;
 
-                Size = new Size(tableLayoutPanel1.Width,615);
+                Size = new Size(tableLayoutPanel1.Width,500);
                 CenterToScreen();
 
             }
 
 
-            else
+            else 
 
             {
                 MessageBox.Show("Nieprawidłowe dane! Spróbuj jeszcze raz", "Error", MessageBoxButtons.OK,
@@ -91,7 +92,7 @@ namespace zag_pos
             for (int x = 0; x < columnCount; x++)
             {
                 //Najpierw dodaj kolumnę
-                tableLayoutPanel1.Font = new Font(FontFamily.GenericSansSerif, 7.5F, FontStyle.Bold);
+                tableLayoutPanel1.Font = new Font(FontFamily.GenericSansSerif, 7.5F, FontStyle.Regular);
                 tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));
 
                 for (int y = 0; y < rowCount; y++)
@@ -142,10 +143,28 @@ namespace zag_pos
                     {
                         txtbox[dataCounter] = new TextBox();
                         tableLayoutPanel1.Controls.Add(txtbox[dataCounter], x, y);
-                        txtbox[dataCounter].Text = (dataCounter).ToString();
-                        dataCounter++;
-                    }
+                        if (m == 2 && n == 3)
+                        {
+                            int[] tt = new int[] {20, 30, 10, 8, 12, 30, 28, 14, 9, 25, 27, 17, 19, 30, 10, 12};
 
+                            txtbox[dataCounter].Text = tt[dataCounter].ToString();
+                            dataCounter++;
+                        }
+
+                        else if (m == 2 && n == 2)
+                        {
+                            int[] tt = new int[] {30, 20, 25, 6, 2, 11, 35, 4, 5, 13, 6, 7};
+
+                            txtbox[dataCounter].Text = tt[dataCounter].ToString();
+                            dataCounter++;
+                        }
+
+                        else
+                        {
+                            dataCounter++;
+                        }
+                    }
+                    
                 }
 
             }
@@ -159,32 +178,58 @@ namespace zag_pos
 
         private void zatwierdz_Click(object sender, EventArgs e)
         {
-            dataArr = new int [dataCounter];
-
-            for (int i = 0; i < dataCounter; i++)
+            if(wprowadzDane())
+                start();
+            else
             {
-                dataArr[i] = Int32.Parse(txtbox[i].Text);
+                MessageBox.Show("Nieprawidłowe dane! Spróbuj jeszcze raz", "Error", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
             }
-                
+        }
+
+        private void start()
+        {
             Calculations cal = new Calculations();
-            cal.calculator(n,m);
-            int huukhkuh = cal.m;
+            cal.calculator(n, m);
             cal.calculate();
             cal.zyskCalkowity();
             cal.funkcja();
             cal.alphaBeta();
             alp(Calculations.alpha);
             bet(Calculations.beta);
+            cal.zmienneKryterialne();
+            cal.kosztIprzychodCalkowity();
+            list(Calculations.kC, Calculations.pC);
 
-            jednostkoweKosztyTransportu();
+            macierzZyskowJednostkowych();
 
+            zyskiJednostkoweLabel.Visible = true;
+            optymalnePrzewozyLabel.Visible = true;
 
+            Size = new Size(1300, 755);
+            CenterToScreen();
         }
 
-        private void jednostkoweKosztyTransportu()
+        private bool wprowadzDane()
         {
-            int column = m+1, row = n + 1;
-            int licznik;
+            dataArr = new int[dataCounter];
+
+            for (int i = 0; i < dataCounter; i++)
+            {
+                if (String.IsNullOrEmpty(txtbox[i].Text) || (txtbox[i] == null) || !Char.IsNumber(txtbox[i].Text, 0) || Int32.Parse(txtbox[i].Text) <= 0)
+                    return false;
+
+                dataArr[i] = Int32.Parse(txtbox[i].Text);
+
+            }
+
+            return true;
+        }
+
+        private void macierzZyskowJednostkowych()
+        {
+            int column = n+1, row = m + 1;
+            int licznik=0;
 
             macierz_zyskow_jedn.Controls.Clear();
             macierz_zyskow_jedn.ColumnStyles.Clear();
@@ -195,7 +240,7 @@ namespace zag_pos
 
             for (int x = 0; x < column; x++)
             {
-                macierz_zyskow_jedn.Font = new Font(FontFamily.GenericSansSerif, 7.5F, FontStyle.Bold);
+                macierz_zyskow_jedn.Font = new Font(FontFamily.GenericSansSerif, 7.5F, FontStyle.Regular);
                 macierz_zyskow_jedn.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));
 
                 for (int y = 0; y < row; y++)
@@ -221,12 +266,66 @@ namespace zag_pos
 
                     else if (y > 0)
                     {
-                        /* Label lbl = new Label();
-                        lbl.Text = 
-                        macierz_zyskow_jedn.Controls.Add(lbl[licznik], x, y);
-                        licznikr++;*/
+                        //string ttt = Calculations.zC[x - 1][y - 1].ToString();
+                        ll[licznik]  = new Label();
+                        macierz_zyskow_jedn.Controls.Add(ll[licznik], x, y);
+                        ll[licznik].Text = Calculations.zC[y - 1][x - 1].ToString();
+                        licznik++;
                     }
 
+
+                }
+
+            }
+        }
+
+        private void optymalnePrzewozy()
+        {
+            int column = n + 1, row = m + 1;
+            int licznik = 0;
+
+            optymalne_przewozy.Controls.Clear();
+            optymalne_przewozy.ColumnStyles.Clear();
+            optymalne_przewozy.RowStyles.Clear();
+
+            optymalne_przewozy.ColumnCount = column;
+            optymalne_przewozy.RowCount = row;
+
+            for (int x = 0; x < column; x++)
+            {
+                optymalne_przewozy.Font = new Font(FontFamily.GenericSansSerif, 7.5F, FontStyle.Regular);
+                optymalne_przewozy.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));
+
+                for (int y = 0; y < row; y++)
+                {
+                    if (x == 0)
+                    {
+                        optymalne_przewozy.RowStyles.Add(new RowStyle(SizeType.AutoSize));
+                    }
+
+                    if (x == 0 && y > 0)
+                    {
+                        Label lbl = new Label();
+                        lbl.Text = "D_" + y;
+                        optymalne_przewozy.Controls.Add(lbl, x, y);
+                    }
+
+                    else if (y == 0 && x > 0)
+                    {
+                        Label lbl = new Label();
+                        lbl.Text = "O_" + x;
+                        optymalne_przewozy.Controls.Add(lbl, x, y);
+                    }
+
+                    else if (y > 0)
+                    {
+                        //string ttt = Calculations.zC[x - 1][y - 1].ToString();
+                        ll[licznik] = new Label();
+                        optymalne_przewozy.Controls.Add(ll[licznik], x, y);
+                        ll[licznik].Text = Calculations.zC[y - 1][x - 1].ToString();
+                        licznik++;
+                    }
+                  
                 }
 
             }
@@ -237,7 +336,10 @@ namespace zag_pos
             string aa = "";
             for (int i=0; i<a.Length; i++)
             {
-                aa += "alpha " + i + " = " + a[i] + "\n";
+                if (i == (a.Length - 1))
+                    aa += "alpha F = " + a[i] + "\n";
+                else
+                    aa += "alpha " + (i+1) + " = " + a[i] + "\n";
             }
 
             alpha1.Text = aa;
@@ -250,12 +352,25 @@ namespace zag_pos
             string bb="";
             for (int i = 0; i < b.Length; i++)
             {
-                bb += "beta " + i + " = " + b[i] + "\n";
+                if (i == (b.Length-1))
+                    bb += "beta F = " + b[i] + "\n";
+                else
+                    bb += "beta " + (i+1) + " = " + b[i] + "\n";
             }
 
             beta1.Text = bb;
             beta1.Visible = true;
 
+        }
+
+        public void list(int kC, int pC)
+        {
+            koszt_c_label.Text = koszt_c_label.Text + kC.ToString();
+            przychod_c_label.Text = przychod_c_label.Text + pC.ToString();
+
+            koszt_c_label.Visible = true;
+            przychod_c_label.Visible = true;
+            zysk_p_label.Visible = true;
         }
 
         private void label2_Click(object sender, EventArgs e)
@@ -272,6 +387,16 @@ namespace zag_pos
         }
 
         private void beta1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label4_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void koszt_c_label_Click(object sender, EventArgs e)
         {
 
         }
