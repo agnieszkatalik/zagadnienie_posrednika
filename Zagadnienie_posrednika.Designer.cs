@@ -138,7 +138,7 @@ namespace zag_pos
             this.optymalne_przewozy.ColumnCount = 2;
             this.optymalne_przewozy.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.optymalne_przewozy.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.optymalne_przewozy.Location = new System.Drawing.Point(-263, 511);
+            this.optymalne_przewozy.Location = new System.Drawing.Point(-286, 511);
             this.optymalne_przewozy.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.optymalne_przewozy.Name = "optymalne_przewozy";
             this.optymalne_przewozy.RowCount = 2;
@@ -267,7 +267,7 @@ namespace zag_pos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(345, 157);
+            this.ClientSize = new System.Drawing.Size(322, 145);
             this.Controls.Add(this.zysk_p_label);
             this.Controls.Add(this.przychod_c_label);
             this.Controls.Add(this.koszt_c_label);

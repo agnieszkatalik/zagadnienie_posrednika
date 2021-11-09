@@ -20,7 +20,7 @@ namespace zag_pos
         public int[] c; // c cena sprzedazy
         public int[][] kT; // kT koszt transportu
         public static int[][] zC; // zC zysk calkowity = cena sprzedazy - koszt zakupu - koszt transportu
-        public int[][] zK;
+        public static int[][] zK;
         public static int kC;
         public static int pC;
 
@@ -367,9 +367,12 @@ namespace zag_pos
             }
 
         }
-
+        
         public void kosztIprzychodCalkowity()
         {
+            kC = 0;
+            pC = 0;
+
             for (int i = 0; i < kZ.Length; i++)
                 kC += kZ[i];
             for (int i=0; i<m; i++)

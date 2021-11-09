@@ -199,9 +199,12 @@ namespace zag_pos
             bet(Calculations.beta);
             cal.zmienneKryterialne();
             cal.kosztIprzychodCalkowity();
+
             list(Calculations.kC, Calculations.pC);
 
             macierzZyskowJednostkowych();
+
+            optymalnePrzewozy(); // to ma byc dopiero na koncu
 
             zyskiJednostkoweLabel.Visible = true;
             optymalnePrzewozyLabel.Visible = true;
@@ -281,7 +284,7 @@ namespace zag_pos
 
         private void optymalnePrzewozy()
         {
-            int column = n + 1, row = m + 1;
+            int column = n + 2, row = m + 2;
             int licznik = 0;
 
             optymalne_przewozy.Controls.Clear();
@@ -305,24 +308,49 @@ namespace zag_pos
 
                     if (x == 0 && y > 0)
                     {
-                        Label lbl = new Label();
-                        lbl.Text = "D_" + y;
-                        optymalne_przewozy.Controls.Add(lbl, x, y);
+                        if (y == row - 1)
+                        {
+                            Label lbl = new Label();
+                            lbl.Text = "DF";
+                            optymalne_przewozy.Controls.Add(lbl, x, y);
+                        }
+
+                        else
+                        {
+                             Label lbl = new Label();
+                             lbl.Text = "D_" + y;
+                             optymalne_przewozy.Controls.Add(lbl, x, y);
+                        }
+
                     }
 
                     else if (y == 0 && x > 0)
                     {
-                        Label lbl = new Label();
-                        lbl.Text = "O_" + x;
-                        optymalne_przewozy.Controls.Add(lbl, x, y);
+                        if (x == column - 1)
+                        {
+                            Label lbl = new Label();
+                            lbl.Text = "OF";
+                            optymalne_przewozy.Controls.Add(lbl, x, y);
+                        }
+                        else
+                        {
+                              Label lbl = new Label();
+                              lbl.Text = "O_" + x;
+                              optymalne_przewozy.Controls.Add(lbl, x, y);
+                        }
+
                     }
+
 
                     else if (y > 0)
                     {
                         //string ttt = Calculations.zC[x - 1][y - 1].ToString();
                         ll[licznik] = new Label();
                         optymalne_przewozy.Controls.Add(ll[licznik], x, y);
-                        ll[licznik].Text = Calculations.zC[y - 1][x - 1].ToString();
+                        if(Calculations.zK[y - 1][x - 1] == 0)
+                            ll[licznik].Text = "x";
+                        else
+                            ll[licznik].Text = Calculations.zK[y-1][x-1].ToString();
                         licznik++;
                     }
                   
@@ -365,8 +393,8 @@ namespace zag_pos
 
         public void list(int kC, int pC)
         {
-            koszt_c_label.Text = koszt_c_label.Text + kC.ToString();
-            przychod_c_label.Text = przychod_c_label.Text + pC.ToString();
+            koszt_c_label.Text = "Koszt całkowity: " + kC.ToString();
+            przychod_c_label.Text = "Przychód całkowity: " + pC.ToString();
 
             koszt_c_label.Visible = true;
             przychod_c_label.Visible = true;
