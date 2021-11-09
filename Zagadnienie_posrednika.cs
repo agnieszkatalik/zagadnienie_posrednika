@@ -195,16 +195,22 @@ namespace zag_pos
             cal.zyskCalkowity();
             cal.funkcja();
             cal.alphaBeta();
-            alp(Calculations.alpha);
-            bet(Calculations.beta);
+            //alp(Calculations.alpha);
+           // bet(Calculations.beta);
             cal.zmienneKryterialne();
             cal.kosztIprzychodCalkowity();
 
             list(Calculations.kC, Calculations.pC);
-
             macierzZyskowJednostkowych();
 
-            optymalnePrzewozy(); // to ma byc dopiero na koncu
+            if (cal.obliczanieOptymalnejTrasy())
+            {
+                optymalnePrzewozy();
+                cal.alphaBeta();
+                alp(Calculations.alpha);
+                bet(Calculations.beta);
+            }
+
 
             zyskiJednostkoweLabel.Visible = true;
             optymalnePrzewozyLabel.Visible = true;
@@ -212,6 +218,7 @@ namespace zag_pos
             Size = new Size(1300, 755);
             CenterToScreen();
         }
+
 
         private bool wprowadzDane()
         {

@@ -367,7 +367,79 @@ namespace zag_pos
             }
 
         }
-        
+
+        public bool obliczanieOptymalnejTrasy()
+        {
+            while (true)
+            {
+                if(!changeTable())
+                    break;
+            }
+
+            return true;
+
+        }
+        public bool changeTable()
+        {
+            int [,] tmpArr = new int[4,2];
+            int tmp = 0;
+            for (int i = 0; i < m + 1; i++)
+            {
+                for (int j = 0; j < n + 1; j++)
+                {
+                    if (zK[i][j] > 0)
+                    {
+                        tmpArr[0, 0] = i;
+                        tmpArr[0, 1] = j;
+                        tmp++;
+                        for (int ii = 0; ii < m + 1; ii++)
+                        {
+                            if (zK[ii][j] == 0)
+                            {
+                                tmpArr[1, 0] = ii;
+                                tmpArr[1, 1] = j;
+                                for (int jj = 0; jj <n + 1; jj++)
+                                {
+                                    if (zK[ii][jj] == 0 && jj!=j)
+                                    {
+                                        tmpArr[2, 0] = ii;
+                                        tmpArr[2, 1] = jj;
+                                        if (zK[i][jj] == 0)
+                                        {
+                                            tmpArr[3, 0] = i;
+                                            tmpArr[1, 1] = jj;
+
+                                            int liczba1 = tablicaLiczb[tmpArr[1, 0]][tmpArr[1, 1]];
+                                            tablicaLiczb[tmpArr[1, 0]][tmpArr[1, 1]] = 0;
+
+                                            tablicaLiczb[tmpArr[0, 0]][tmpArr[0, 1]] += liczba1;
+                                            tablicaLiczb[tmpArr[2, 0]][tmpArr[2, 1]] += liczba1;
+                                            tablicaLiczb[tmpArr[3, 0]][tmpArr[3, 1]] -= liczba1;
+
+                                            alphaBeta();
+                                            zmienneKryterialne();
+                                            changeTable();
+
+                                        }
+
+                                    }
+                                }
+                            }
+                        }
+
+
+
+                    }
+                }
+            }
+
+            if (tmp == 0)
+                return false;
+            else
+                return true;
+        }
+
+
         public void kosztIprzychodCalkowity()
         {
             kC = 0;
