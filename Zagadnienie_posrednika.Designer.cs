@@ -35,7 +35,7 @@ namespace zag_pos
             this.liczba_odbiorcow = new System.Windows.Forms.TextBox();
             this.liczba_dostawcow = new System.Windows.Forms.TextBox();
             this.ok = new System.Windows.Forms.Button();
-            this.optymalne_przewozy = new System.Windows.Forms.TableLayoutPanel();
+            this.zmienne_kryterialne = new System.Windows.Forms.TableLayoutPanel();
             this.macierz_zyskow_jedn = new System.Windows.Forms.TableLayoutPanel();
             this.beta1 = new System.Windows.Forms.Label();
             this.zatwierdz = new System.Windows.Forms.Button();
@@ -45,12 +45,13 @@ namespace zag_pos
             this.koszt_c_label = new System.Windows.Forms.Label();
             this.przychod_c_label = new System.Windows.Forms.Label();
             this.zysk_p_label = new System.Windows.Forms.Label();
+            this.zmienneKryterialneLabel = new System.Windows.Forms.Label();
+            this.optymalne_przewozy = new System.Windows.Forms.TableLayoutPanel();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.AutoScroll = true;
-            this.tableLayoutPanel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.tableLayoutPanel1.ColumnCount = 2;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
@@ -131,21 +132,23 @@ namespace zag_pos
             this.ok.UseVisualStyleBackColor = true;
             this.ok.Click += new System.EventHandler(this.ok_Click);
             // 
-            // optymalne_przewozy
+            // zmienne_kryterialne
             // 
-            this.optymalne_przewozy.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.optymalne_przewozy.AutoScroll = true;
-            this.optymalne_przewozy.ColumnCount = 2;
-            this.optymalne_przewozy.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.optymalne_przewozy.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.optymalne_przewozy.Location = new System.Drawing.Point(-286, 511);
-            this.optymalne_przewozy.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.optymalne_przewozy.Name = "optymalne_przewozy";
-            this.optymalne_przewozy.RowCount = 2;
-            this.optymalne_przewozy.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.optymalne_przewozy.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.optymalne_przewozy.Size = new System.Drawing.Size(602, 181);
-            this.optymalne_przewozy.TabIndex = 13;
+            this.zmienne_kryterialne.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.zmienne_kryterialne.AutoScroll = true;
+            this.zmienne_kryterialne.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.zmienne_kryterialne.ColumnCount = 2;
+            this.zmienne_kryterialne.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.zmienne_kryterialne.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.zmienne_kryterialne.Location = new System.Drawing.Point(-285, 283);
+            this.zmienne_kryterialne.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.zmienne_kryterialne.Name = "zmienne_kryterialne";
+            this.zmienne_kryterialne.RowCount = 2;
+            this.zmienne_kryterialne.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.zmienne_kryterialne.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.zmienne_kryterialne.Size = new System.Drawing.Size(602, 163);
+            this.zmienne_kryterialne.TabIndex = 13;
+            this.zmienne_kryterialne.Visible = false;
             // 
             // macierz_zyskow_jedn
             // 
@@ -166,13 +169,12 @@ namespace zag_pos
             // 
             this.beta1.AutoSize = true;
             this.beta1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.beta1.Location = new System.Drawing.Point(1087, 252);
+            this.beta1.Location = new System.Drawing.Point(1078, 43);
             this.beta1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.beta1.Name = "beta1";
             this.beta1.Size = new System.Drawing.Size(44, 16);
             this.beta1.TabIndex = 16;
             this.beta1.Text = "beta =";
-            this.beta1.Visible = false;
             this.beta1.Click += new System.EventHandler(this.beta1_Click);
             // 
             // zatwierdz
@@ -192,13 +194,12 @@ namespace zag_pos
             // 
             this.alpha1.AutoSize = true;
             this.alpha1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.alpha1.Location = new System.Drawing.Point(926, 252);
+            this.alpha1.Location = new System.Drawing.Point(917, 43);
             this.alpha1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.alpha1.Name = "alpha1";
             this.alpha1.Size = new System.Drawing.Size(50, 16);
             this.alpha1.TabIndex = 15;
             this.alpha1.Text = "alpha =";
-            this.alpha1.Visible = false;
             this.alpha1.Click += new System.EventHandler(this.alpha_0_Click);
             // 
             // zyskiJednostkoweLabel
@@ -211,63 +212,83 @@ namespace zag_pos
             this.zyskiJednostkoweLabel.Size = new System.Drawing.Size(186, 16);
             this.zyskiJednostkoweLabel.TabIndex = 23;
             this.zyskiJednostkoweLabel.Text = "Tabela zysków jednostkowych:";
-            this.zyskiJednostkoweLabel.Visible = false;
             this.zyskiJednostkoweLabel.Click += new System.EventHandler(this.label4_Click_1);
             // 
             // optymalnePrzewozyLabel
             // 
             this.optymalnePrzewozyLabel.AutoSize = true;
             this.optymalnePrzewozyLabel.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.optymalnePrzewozyLabel.Location = new System.Drawing.Point(680, 475);
+            this.optymalnePrzewozyLabel.Location = new System.Drawing.Point(680, 464);
             this.optymalnePrzewozyLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.optymalnePrzewozyLabel.Name = "optymalnePrzewozyLabel";
             this.optymalnePrzewozyLabel.Size = new System.Drawing.Size(194, 16);
             this.optymalnePrzewozyLabel.TabIndex = 24;
             this.optymalnePrzewozyLabel.Text = "Tabela optymalnych przewozów:";
-            this.optymalnePrzewozyLabel.Visible = false;
             // 
             // koszt_c_label
             // 
             this.koszt_c_label.AutoSize = true;
             this.koszt_c_label.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.koszt_c_label.Location = new System.Drawing.Point(680, 252);
+            this.koszt_c_label.Location = new System.Drawing.Point(671, 43);
             this.koszt_c_label.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.koszt_c_label.Name = "koszt_c_label";
             this.koszt_c_label.Size = new System.Drawing.Size(107, 16);
             this.koszt_c_label.TabIndex = 25;
             this.koszt_c_label.Text = "Koszt całkowity: ";
-            this.koszt_c_label.Visible = false;
             this.koszt_c_label.Click += new System.EventHandler(this.koszt_c_label_Click);
             // 
             // przychod_c_label
             // 
             this.przychod_c_label.AutoSize = true;
             this.przychod_c_label.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.przychod_c_label.Location = new System.Drawing.Point(680, 285);
+            this.przychod_c_label.Location = new System.Drawing.Point(671, 76);
             this.przychod_c_label.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.przychod_c_label.Name = "przychod_c_label";
             this.przychod_c_label.Size = new System.Drawing.Size(128, 16);
             this.przychod_c_label.TabIndex = 26;
             this.przychod_c_label.Text = "Przychód całkowity: ";
-            this.przychod_c_label.Visible = false;
             // 
             // zysk_p_label
             // 
             this.zysk_p_label.AutoSize = true;
             this.zysk_p_label.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.zysk_p_label.Location = new System.Drawing.Point(680, 320);
+            this.zysk_p_label.Location = new System.Drawing.Point(671, 111);
             this.zysk_p_label.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.zysk_p_label.Name = "zysk_p_label";
             this.zysk_p_label.Size = new System.Drawing.Size(110, 16);
             this.zysk_p_label.TabIndex = 27;
             this.zysk_p_label.Text = "Zysk pośrednika: ";
-            this.zysk_p_label.Visible = false;
+            // 
+            // zmienneKryterialneLabel
+            // 
+            this.zmienneKryterialneLabel.AutoSize = true;
+            this.zmienneKryterialneLabel.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.zmienneKryterialneLabel.Location = new System.Drawing.Point(671, 241);
+            this.zmienneKryterialneLabel.Name = "zmienneKryterialneLabel";
+            this.zmienneKryterialneLabel.Size = new System.Drawing.Size(254, 16);
+            this.zmienneKryterialneLabel.TabIndex = 28;
+            this.zmienneKryterialneLabel.Text = "Tabela poglądowa zmiennych kryterialnych";
+            // 
+            // optymalne_przewozy
+            // 
+            this.optymalne_przewozy.ColumnCount = 2;
+            this.optymalne_przewozy.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.optymalne_przewozy.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.optymalne_przewozy.Location = new System.Drawing.Point(681, 510);
+            this.optymalne_przewozy.Name = "optymalne_przewozy";
+            this.optymalne_przewozy.RowCount = 2;
+            this.optymalne_przewozy.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.optymalne_przewozy.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.optymalne_przewozy.Size = new System.Drawing.Size(602, 181);
+            this.optymalne_przewozy.TabIndex = 29;
             // 
             // Zagadnienie_posrednika
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(322, 145);
+            this.ClientSize = new System.Drawing.Size(327, 149);
+            this.Controls.Add(this.optymalne_przewozy);
+            this.Controls.Add(this.zmienneKryterialneLabel);
             this.Controls.Add(this.zysk_p_label);
             this.Controls.Add(this.przychod_c_label);
             this.Controls.Add(this.koszt_c_label);
@@ -277,7 +298,7 @@ namespace zag_pos
             this.Controls.Add(this.zatwierdz);
             this.Controls.Add(this.alpha1);
             this.Controls.Add(this.macierz_zyskow_jedn);
-            this.Controls.Add(this.optymalne_przewozy);
+            this.Controls.Add(this.zmienne_kryterialne);
             this.Controls.Add(this.ok);
             this.Controls.Add(this.liczba_dostawcow);
             this.Controls.Add(this.liczba_odbiorcow);
@@ -303,7 +324,7 @@ namespace zag_pos
         private System.Windows.Forms.TextBox liczba_odbiorcow;
         private System.Windows.Forms.TextBox liczba_dostawcow;
         private System.Windows.Forms.Button ok;
-        private System.Windows.Forms.TableLayoutPanel optymalne_przewozy;
+        private System.Windows.Forms.TableLayoutPanel zmienne_kryterialne;
         private System.Windows.Forms.TableLayoutPanel macierz_zyskow_jedn;
         private System.Windows.Forms.Button zatwierdz;
         private System.Windows.Forms.Label beta1;
@@ -313,6 +334,8 @@ namespace zag_pos
         private System.Windows.Forms.Label koszt_c_label;
         private System.Windows.Forms.Label przychod_c_label;
         private System.Windows.Forms.Label zysk_p_label;
+        private System.Windows.Forms.Label zmienneKryterialneLabel;
+        private System.Windows.Forms.TableLayoutPanel optymalne_przewozy;
     }
 }
 

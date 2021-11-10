@@ -43,6 +43,15 @@ namespace zag_pos
 
             if (!(String.IsNullOrEmpty(liczba_dostawcow.Text)) && !(String.IsNullOrEmpty(liczba_odbiorcow.Text)) && (liczba_dostawcow!= null) && (liczba_odbiorcow!= null) && (Char.IsNumber(liczba_odbiorcow.Text, 0)) && (Char.IsNumber(liczba_dostawcow.Text, 0)))
             {
+                zmienne_kryterialne.Visible = false;
+                macierz_zyskow_jedn.Visible = false;
+                optymalne_przewozy.Visible = false;
+                alpha1.Text = "alpha =";
+                beta1.Text = "beta =";
+                koszt_c_label.Text = "Koszt całkowity:";
+                zysk_p_label.Text = "Zysk pośrednika:";
+                przychod_c_label.Text = "Przychód całkowity:";
+
                 dataCounter = 0;
                 m = Int32.Parse(liczba_dostawcow.Text);
                 n = Int32.Parse(liczba_odbiorcow.Text);
@@ -52,7 +61,7 @@ namespace zag_pos
                 GenerateTable(columnCount, rowCount);
                 zatwierdz.Visible = true;
 
-                Size = new Size(tableLayoutPanel1.Width,500);
+                Size = new Size(1300, 755);
                 CenterToScreen();
 
             }
@@ -205,15 +214,18 @@ namespace zag_pos
 
             if (cal.obliczanieOptymalnejTrasy())
             {
-                optymalnePrzewozy();
+                zmienneKryterialne();
                 cal.alphaBeta();
                 alp(Calculations.alpha);
                 bet(Calculations.beta);
             }
 
+            optymalnePrzewozy();
+
 
             zyskiJednostkoweLabel.Visible = true;
             optymalnePrzewozyLabel.Visible = true;
+            zmienneKryterialneLabel.Visible = true;
 
             Size = new Size(1300, 755);
             CenterToScreen();
@@ -287,6 +299,87 @@ namespace zag_pos
                 }
 
             }
+
+            macierz_zyskow_jedn.Visible = true;
+        }
+
+        private void zmienneKryterialne()
+        {
+            int column = n + 2, row = m + 2;
+            int licznik = 0;
+
+            zmienne_kryterialne.Controls.Clear();
+            zmienne_kryterialne.ColumnStyles.Clear();
+            zmienne_kryterialne.RowStyles.Clear();
+
+            zmienne_kryterialne.ColumnCount = column;
+            zmienne_kryterialne.RowCount = row;
+
+            for (int x = 0; x < column; x++)
+            {
+                zmienne_kryterialne.Font = new Font(FontFamily.GenericSansSerif, 7.5F, FontStyle.Regular);
+                zmienne_kryterialne.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));
+
+                for (int y = 0; y < row; y++)
+                {
+                    if (x == 0)
+                    {
+                        zmienne_kryterialne.RowStyles.Add(new RowStyle(SizeType.AutoSize));
+                    }
+
+                    if (x == 0 && y > 0)
+                    {
+                        if (y == row - 1)
+                        {
+                            Label lbl = new Label();
+                            lbl.Text = "DF";
+                            zmienne_kryterialne.Controls.Add(lbl, x, y);
+                        }
+
+                        else
+                        {
+                             Label lbl = new Label();
+                             lbl.Text = "D_" + y;
+                             zmienne_kryterialne.Controls.Add(lbl, x, y);
+                        }
+
+                    }
+
+                    else if (y == 0 && x > 0)
+                    {
+                        if (x == column - 1)
+                        {
+                            Label lbl = new Label();
+                            lbl.Text = "OF";
+                            zmienne_kryterialne.Controls.Add(lbl, x, y);
+                        }
+                        else
+                        {
+                              Label lbl = new Label();
+                              lbl.Text = "O_" + x;
+                              zmienne_kryterialne.Controls.Add(lbl, x, y);
+                        }
+
+                    }
+
+
+                    else if (y > 0)
+                    {
+                        //string ttt = Calculations.zC[x - 1][y - 1].ToString();
+                        ll[licznik] = new Label();
+                        zmienne_kryterialne.Controls.Add(ll[licznik], x, y);
+                        if(Calculations.zK[y - 1][x - 1] == 0)
+                            ll[licznik].Text = "x";
+                        else
+                            ll[licznik].Text = Calculations.zK[y-1][x-1].ToString();
+                        licznik++;
+                    }
+                  
+                }
+
+            }
+
+            zmienne_kryterialne.Visible = true;
         }
 
         private void optymalnePrzewozy()
@@ -324,9 +417,9 @@ namespace zag_pos
 
                         else
                         {
-                             Label lbl = new Label();
-                             lbl.Text = "D_" + y;
-                             optymalne_przewozy.Controls.Add(lbl, x, y);
+                            Label lbl = new Label();
+                            lbl.Text = "D_" + y;
+                            optymalne_przewozy.Controls.Add(lbl, x, y);
                         }
 
                     }
@@ -341,9 +434,9 @@ namespace zag_pos
                         }
                         else
                         {
-                              Label lbl = new Label();
-                              lbl.Text = "O_" + x;
-                              optymalne_przewozy.Controls.Add(lbl, x, y);
+                            Label lbl = new Label();
+                            lbl.Text = "O_" + x;
+                            optymalne_przewozy.Controls.Add(lbl, x, y);
                         }
 
                     }
@@ -351,19 +444,18 @@ namespace zag_pos
 
                     else if (y > 0)
                     {
-                        //string ttt = Calculations.zC[x - 1][y - 1].ToString();
                         ll[licznik] = new Label();
                         optymalne_przewozy.Controls.Add(ll[licznik], x, y);
-                        if(Calculations.zK[y - 1][x - 1] == 0)
-                            ll[licznik].Text = "x";
-                        else
-                            ll[licznik].Text = Calculations.zK[y-1][x-1].ToString();
+
+                        ll[licznik].Text = Calculations.zC[y - 1][x - 1].ToString() + " (" + Calculations.tablicaLiczb[y-1][x-1] + ")";
                         licznik++;
                     }
-                  
+
                 }
 
             }
+
+            optymalne_przewozy.Visible = true;
         }
 
         public void alp(int []a)

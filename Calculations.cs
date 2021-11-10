@@ -32,7 +32,7 @@ namespace zag_pos
         public int[] alpha1;
         public int[] beta1;
 
-        private int[][] tablicaLiczb;// tablica pomocnicza  // tam gdzie <=0 nie było trasy i dla tych liczymy kryterialne
+        public static int[][] tablicaLiczb;// tablica pomocnicza  // tam gdzie <=0 nie było trasy i dla tych liczymy kryterialne
 
         public void calculator(int n, int m)
         {
@@ -445,12 +445,10 @@ namespace zag_pos
             kC = 0;
             pC = 0;
 
-            for (int i = 0; i < kZ.Length; i++)
-                kC += kZ[i];
             for (int i=0; i<m; i++)
             {
                 for(int j=0; j<n; j++)
-                    kC += kT[i][j];
+                    kC += kT[i][j] + kZ[i];
             }
 
             pC += kC;
