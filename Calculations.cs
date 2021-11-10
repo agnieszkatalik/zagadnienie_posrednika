@@ -381,7 +381,10 @@ namespace zag_pos
         }
         public bool changeTable()
         {
-            int [,] tmpArr = new int[4,2];
+            int [,] tmpArr = new int[4,2]{{0,0}, { 0, 0 }, { 0, 0 }, { 0, 0 }};
+            int liczba1;
+
+
             int tmp = 0;
             for (int i = 0; i < m + 1; i++)
             {
@@ -407,18 +410,28 @@ namespace zag_pos
                                         if (zK[i][jj] == 0)
                                         {
                                             tmpArr[3, 0] = i;
-                                            tmpArr[1, 1] = jj;
+                                            tmpArr[3, 1] = jj;
 
-                                            int liczba1 = tablicaLiczb[tmpArr[1, 0]][tmpArr[1, 1]];
-                                            tablicaLiczb[tmpArr[1, 0]][tmpArr[1, 1]] = 0;
+                                            if ((tablicaLiczb[tmpArr[1, 0]][tmpArr[1, 1]]) < (tablicaLiczb[tmpArr[3, 0]][tmpArr[3, 1]]))
+                                            {
+                                                liczba1 = tablicaLiczb[tmpArr[1, 0]][tmpArr[1, 1]];
+                                                tablicaLiczb[tmpArr[1, 0]][tmpArr[1, 1]] = 0;
+                                                tablicaLiczb[tmpArr[3, 0]][tmpArr[3, 1]] -= liczba1;
+                                            }
+                                            else
+                                            {
+                                                liczba1 = tablicaLiczb[tmpArr[3, 0]][tmpArr[3, 1]];
+                                                tablicaLiczb[tmpArr[3, 0]][tmpArr[3, 1]] = 0;
+                                                tablicaLiczb[tmpArr[1, 0]][tmpArr[1, 1]] -= liczba1;
+                                            }
 
-                                            tablicaLiczb[tmpArr[0, 0]][tmpArr[0, 1]] += liczba1;
+                                            tablicaLiczb[tmpArr[0, 0]][tmpArr[0, 1]] = liczba1;
                                             tablicaLiczb[tmpArr[2, 0]][tmpArr[2, 1]] += liczba1;
-                                            tablicaLiczb[tmpArr[3, 0]][tmpArr[3, 1]] -= liczba1;
+                                            
 
                                             alphaBeta();
                                             zmienneKryterialne();
-                                            changeTable();
+                                           // changeTable();
 
                                         }
 

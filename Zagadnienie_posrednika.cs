@@ -87,26 +87,20 @@ namespace zag_pos
 
         private void GenerateTable(int columnCount, int rowCount)
         {
-            //Wyczyść istniejące kontrolki, generujemy nowy układ tabeli
             tableLayoutPanel1.Controls.Clear();
-
-            //Wyczyść istniejący styl wiersza i kolumny s
             tableLayoutPanel1.ColumnStyles.Clear();
             tableLayoutPanel1.RowStyles.Clear();
 
-            //Teraz wygenerujemy tabelę, ustawiając liczbę wierszy i kolumn pierwsza
             tableLayoutPanel1.ColumnCount = columnCount;
             tableLayoutPanel1.RowCount = rowCount;
 
             for (int x = 0; x < columnCount; x++)
             {
-                //Najpierw dodaj kolumnę
                 tableLayoutPanel1.Font = new Font(FontFamily.GenericSansSerif, 7.5F, FontStyle.Regular);
                 tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));
 
                 for (int y = 0; y < rowCount; y++)
                 {
-                    //Następnie dodaj wiersz. Zrób to tylko raz, podczas tworzenia pierwszej kolumny
                     if (x == 0)
                     {
                         tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.AutoSize));
@@ -447,7 +441,11 @@ namespace zag_pos
                         ll[licznik] = new Label();
                         optymalne_przewozy.Controls.Add(ll[licznik], x, y);
 
-                        ll[licznik].Text = Calculations.zC[y - 1][x - 1].ToString() + " (" + Calculations.tablicaLiczb[y-1][x-1] + ")";
+                        if(Calculations.tablicaLiczb[y - 1][x - 1] <=0)
+                            ll[licznik].Text = Calculations.zC[y - 1][x - 1].ToString() + " (x)";
+                        else
+                            ll[licznik].Text = Calculations.zC[y - 1][x - 1].ToString() + " (" + Calculations.tablicaLiczb[y-1][x-1] + ")"; 
+                        
                         licznik++;
                     }
 
