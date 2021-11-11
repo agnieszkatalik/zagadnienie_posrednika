@@ -23,6 +23,7 @@ namespace zag_pos
         public static int[][] zK;
         public static int kC;
         public static int pC;
+        public static int dC;
 
         public int suma_podaz = 0;
         public int suma_popyt = 0;
@@ -453,23 +454,27 @@ namespace zag_pos
         }
 
 
-        public void kosztIprzychodCalkowity()
+        public void kosztPrzychodIzyskCalkowity()
         {
             kC = 0;
             pC = 0;
+            dC = 0;
 
             for (int i=0; i<m; i++)
             {
                 for(int j=0; j<n; j++)
-                    kC += kT[i][j] + kZ[i];
+                    if(tablicaLiczb[i][j] > 0)
+                        kC += kT[i][j] + (kZ[i]* tablicaLiczb[i][j]);
             }
 
-            pC += kC;
             for (int i = 0; i < m; i++)
             {
                 for (int j = 0; j < n; j++)
-                    pC += zC[i][j];
+                    if (tablicaLiczb[i][j] > 0)
+                        dC += (c[j] * tablicaLiczb[i][j]) - (kZ[i] * tablicaLiczb[i][j]) - kT[i][j];
             }
+
+            pC = kC + dC;
         }
     }
 

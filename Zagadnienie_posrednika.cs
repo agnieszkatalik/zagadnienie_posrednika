@@ -27,17 +27,6 @@ namespace zag_pos
             InitializeComponent();
         }
 
-
-        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void ok_Click(object sender, EventArgs e)
         {
 
@@ -76,14 +65,6 @@ namespace zag_pos
 
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-        }
-
-        private void textBox2_TextChanged(object sender, EventArgs e)
-        {
-
-        }
 
         private void GenerateTable(int columnCount, int rowCount)
         {
@@ -174,11 +155,6 @@ namespace zag_pos
 
         }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void zatwierdz_Click(object sender, EventArgs e)
         {
             if(wprowadzDane())
@@ -201,9 +177,6 @@ namespace zag_pos
             //alp(Calculations.alpha);
            // bet(Calculations.beta);
             cal.zmienneKryterialne();
-            cal.kosztIprzychodCalkowity();
-
-            list(Calculations.kC, Calculations.pC);
             macierzZyskowJednostkowych();
 
             if (cal.obliczanieOptymalnejTrasy())
@@ -216,6 +189,8 @@ namespace zag_pos
 
             optymalnePrzewozy();
 
+            cal.kosztPrzychodIzyskCalkowity();
+            list(Calculations.kC, Calculations.pC, Calculations.dC);
 
             zyskiJednostkoweLabel.Visible = true;
             optymalnePrzewozyLabel.Visible = true;
@@ -488,42 +463,16 @@ namespace zag_pos
 
         }
 
-        public void list(int kC, int pC)
+        public void list(int kC, int pC, int dC)
         {
             koszt_c_label.Text = "Koszt całkowity: " + kC.ToString();
             przychod_c_label.Text = "Przychód całkowity: " + pC.ToString();
+            zysk_p_label.Text = "Zysk całkowity: " + dC.ToString();
 
             koszt_c_label.Visible = true;
             przychod_c_label.Visible = true;
             zysk_p_label.Visible = true;
         }
 
-        private void label2_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void label4_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void alpha_0_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void beta1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label4_Click_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void koszt_c_label_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }

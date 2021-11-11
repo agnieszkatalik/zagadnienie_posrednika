@@ -67,7 +67,6 @@ namespace zag_pos
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(602, 177);
             this.tableLayoutPanel1.TabIndex = 5;
-            this.tableLayoutPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel1_Paint);
             // 
             // podaj_odb_label
             // 
@@ -100,7 +99,6 @@ namespace zag_pos
             this.podaj_d_label.TabIndex = 4;
             this.podaj_d_label.Text = "Podaj liczbę dostawców:";
             this.podaj_d_label.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.podaj_d_label.Click += new System.EventHandler(this.label3_Click);
             // 
             // liczba_odbiorcow
             // 
@@ -109,7 +107,6 @@ namespace zag_pos
             this.liczba_odbiorcow.Name = "liczba_odbiorcow";
             this.liczba_odbiorcow.Size = new System.Drawing.Size(48, 23);
             this.liczba_odbiorcow.TabIndex = 0;
-            this.liczba_odbiorcow.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // liczba_dostawcow
             // 
@@ -118,7 +115,6 @@ namespace zag_pos
             this.liczba_dostawcow.Name = "liczba_dostawcow";
             this.liczba_dostawcow.Size = new System.Drawing.Size(48, 23);
             this.liczba_dostawcow.TabIndex = 1;
-            this.liczba_dostawcow.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
             // 
             // ok
             // 
@@ -175,7 +171,6 @@ namespace zag_pos
             this.beta1.Size = new System.Drawing.Size(44, 16);
             this.beta1.TabIndex = 16;
             this.beta1.Text = "beta =";
-            this.beta1.Click += new System.EventHandler(this.beta1_Click);
             // 
             // zatwierdz
             // 
@@ -200,7 +195,6 @@ namespace zag_pos
             this.alpha1.Size = new System.Drawing.Size(50, 16);
             this.alpha1.TabIndex = 15;
             this.alpha1.Text = "alpha =";
-            this.alpha1.Click += new System.EventHandler(this.alpha_0_Click);
             // 
             // zyskiJednostkoweLabel
             // 
@@ -212,7 +206,6 @@ namespace zag_pos
             this.zyskiJednostkoweLabel.Size = new System.Drawing.Size(186, 16);
             this.zyskiJednostkoweLabel.TabIndex = 23;
             this.zyskiJednostkoweLabel.Text = "Tabela zysków jednostkowych:";
-            this.zyskiJednostkoweLabel.Click += new System.EventHandler(this.label4_Click_1);
             // 
             // optymalnePrzewozyLabel
             // 
@@ -235,7 +228,6 @@ namespace zag_pos
             this.koszt_c_label.Size = new System.Drawing.Size(107, 16);
             this.koszt_c_label.TabIndex = 25;
             this.koszt_c_label.Text = "Koszt całkowity: ";
-            this.koszt_c_label.Click += new System.EventHandler(this.koszt_c_label_Click);
             // 
             // przychod_c_label
             // 
@@ -310,7 +302,6 @@ namespace zag_pos
             this.Name = "Zagadnienie_posrednika";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Zagadnienie posrednika";
-            this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
