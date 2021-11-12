@@ -143,6 +143,14 @@ namespace zag_pos
                             dataCounter++;
                         }
 
+                        else if (m == 3 && n == 3)
+                        {
+                            int[] tt = new int[] { 20, 30, 55, 28, 17, 7, 15, 30, 37, 15, 7, 14, 30, 45, 6, 1, 3, 25, 10, 12, 14 };
+
+                            txtbox[dataCounter].Text = tt[dataCounter].ToString();
+                            dataCounter++;
+                        }
+
                         else
                         {
                             dataCounter++;

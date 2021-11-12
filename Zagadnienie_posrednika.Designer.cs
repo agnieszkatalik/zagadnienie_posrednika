@@ -136,7 +136,7 @@ namespace zag_pos
             this.zmienne_kryterialne.ColumnCount = 2;
             this.zmienne_kryterialne.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.zmienne_kryterialne.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.zmienne_kryterialne.Location = new System.Drawing.Point(-285, 283);
+            this.zmienne_kryterialne.Location = new System.Drawing.Point(-262, 283);
             this.zmienne_kryterialne.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.zmienne_kryterialne.Name = "zmienne_kryterialne";
             this.zmienne_kryterialne.RowCount = 2;
@@ -257,9 +257,9 @@ namespace zag_pos
             this.zmienneKryterialneLabel.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.zmienneKryterialneLabel.Location = new System.Drawing.Point(671, 241);
             this.zmienneKryterialneLabel.Name = "zmienneKryterialneLabel";
-            this.zmienneKryterialneLabel.Size = new System.Drawing.Size(254, 16);
+            this.zmienneKryterialneLabel.Size = new System.Drawing.Size(323, 16);
             this.zmienneKryterialneLabel.TabIndex = 28;
-            this.zmienneKryterialneLabel.Text = "Tabela poglądowa zmiennych kryterialnych";
+            this.zmienneKryterialneLabel.Text = "Tabela poglądowa końcowych zmiennych kryterialnych";
             // 
             // optymalne_przewozy
             // 
@@ -278,7 +278,7 @@ namespace zag_pos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(327, 149);
+            this.ClientSize = new System.Drawing.Size(350, 156);
             this.Controls.Add(this.optymalne_przewozy);
             this.Controls.Add(this.zmienneKryterialneLabel);
             this.Controls.Add(this.zysk_p_label);

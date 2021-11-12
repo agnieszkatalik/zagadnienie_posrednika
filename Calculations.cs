@@ -432,8 +432,8 @@ namespace zag_pos
 
                                             alphaBeta();
                                             zmienneKryterialne();
-                                           // changeTable();
-
+                                            // changeTable();
+                                            return true;
                                         }
 
                                     }
@@ -449,8 +449,8 @@ namespace zag_pos
 
             if (tmp == 0)
                 return false;
-            else
-                return true;
+
+        return true;
         }
 
 
