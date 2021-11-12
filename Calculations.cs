@@ -111,20 +111,6 @@ namespace zag_pos
 
         public void funkcja()
         {
-            if (suma_popyt == suma_podaz)
-            {
-                zC = new int[m][]; // zC zysk calkowity = cena sprzedazy - koszt zakupu - koszt transportu
-                for (int i = 0; i < m; i++)
-                {
-                    zC[i] = new int[n];
-                    for (int j = 0; j < n; j++)
-                    {
-                        zC[i][j] = c[j] - (kZ[i] + kT[i][j]);
-                    }
-                }
-            }
-            else
-            {
 
                 podaz[m] = suma_popyt;
                 popyt[n] = suma_podaz;
@@ -282,11 +268,7 @@ namespace zag_pos
                     tablicaLiczb[m][n] = popyt1[n];
                     popyt1[n] = 0;
                 }
-
-                
-
-            }
-
+             
         }
 
         public void alphaBeta()
