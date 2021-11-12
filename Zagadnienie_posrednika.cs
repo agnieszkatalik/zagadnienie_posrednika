@@ -345,7 +345,8 @@ namespace zag_pos
                         //string ttt = Calculations.zC[x - 1][y - 1].ToString();
                         ll[licznik] = new Label();
                         zmienne_kryterialne.Controls.Add(ll[licznik], x, y);
-                        if(Calculations.zK[y - 1][x - 1] == 0)
+                        //if(Calculations.zK[y - 1][x - 1] == 0)
+                        if(Calculations.tablicaLiczb[y - 1][x - 1] > 0)
                             ll[licznik].Text = "x";
                         else
                             ll[licznik].Text = Calculations.zK[y-1][x-1].ToString();
